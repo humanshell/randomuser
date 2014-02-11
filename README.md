@@ -6,45 +6,51 @@ This gem returns simple JSON/hash responses from the [Random User Generator](htt
 
 Add this line to your application's Gemfile:
 
-    gem 'randomuser'
+```ruby
+gem 'randomuser'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install randomuser
+```bash
+$ gem install randomuser
+```
 
 ## Usage
 
 To request a single random user:
 
-```
+```ruby
 Randomuser.generate
 ```
 
 To request multiple random users:
 
-```
+```ruby
 Randomuser.generate('results=5')
 ```
 
 To request a specific gender:
 
-```
+```ruby
 Randomuser.generate('gender=female')
 ```
 
 To request a specific gender with multiple results:
 
-```
+```ruby
 Randomuser.generate('results=5&gender=female')
 ```
 
 To request a specific user:
 
-```
+```ruby
 Randomuser.generate('seed=smallPanda')
 ```
 
