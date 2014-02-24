@@ -1,29 +1,41 @@
-# Randomuser Ruby Library
 require 'net/http'
 require 'uri'
 require 'json'
 require 'randomuser/version'
 
 module Randomuser
-  @@api_base = 'http://randomuser.me/g/'
 
-  def self.api_url(query='')
-    "#{@@api_base}?#{query}"
+  def self.generate(number=1)
+    request("results=#{number}")
   end
 
-  def self.generate(query='')
+  def self.generate_female(number=1)
+    request("results=#{number}&gender=female")
+  end
 
-    # create the http connection object
-    uri  = URI.parse(self.api_url(query))
-    http = Net::HTTP.new(uri.host, uri.port)
+  def self.generate_male(number=1)
+    request("results=#{number}&gender=male")
+  end
 
-    # open our HTTP connection and send the appropriate request type
-    # the block will automatically close our connection so we don't have to
-    http.start do |connection|
-      response = connection.send_request(:get, uri.request_uri)
-      response = JSON.parse(response.body, symbolize_names: true)
-      response[:results]
+  def self.generate_seed(seed='')
+    request("seed=#{seed}")
+  end
+
+  private
+
+    def self.api_url(query='')
+      "http://api.randomuser.me/#{Randomuser::VERSION}/?#{query}"
     end
-    
-  end
+  
+    def self.request(query='')
+      uri  = URI.parse(self.api_url(query))
+      http = Net::HTTP.new(uri.host, uri.port)
+
+      http.start do |connection|
+        response = connection.send_request(:get, uri.request_uri)
+        response = JSON.parse(response.body, symbolize_names: true)
+        response[:results]
+      end
+    end
+
 end
