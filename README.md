@@ -16,7 +16,7 @@ And then execute:
 $ bundle
 ```
 
-Or install it yourself as:
+Or install it as a standalone gem with:
 
 ```bash
 $ gem install randomuser
@@ -33,28 +33,51 @@ Randomuser.generate
 To request multiple random users:
 
 ```ruby
-Randomuser.generate('results=5')
+Randomuser.generate(5)
 ```
 
-To request a specific gender:
+To request a single female random user:
 
 ```ruby
-Randomuser.generate('gender=female')
+Randomuser.generate_female
 ```
 
-To request a specific gender with multiple results:
+To request multiple female random users:
 
 ```ruby
-Randomuser.generate('results=5&gender=female')
+Randomuser.generate_female(5)
+```
+
+To request a single male random user:
+
+```ruby
+Randomuser.generate_male
+```
+
+To request multiple male random users:
+
+```ruby
+Randomuser.generate_male(5)
 ```
 
 To request a specific user:
 
 ```ruby
-Randomuser.generate('seed=smallPanda')
+Randomuser.generate_seed('foobar')
 ```
 
-For more information on how to customize requests, please see the [Random User Generator](http://randomuser.me) site.
+For more information on this API, please see the [Random User Generator](http://randomuser.me) site.
+
+## Tests
+
+Testing works as usual:
+
+```bash
+git clone https://github.com/humanshell/randomuser.git
+cd randomuser
+bundle install
+rake
+```
 
 ## Contributing
 
