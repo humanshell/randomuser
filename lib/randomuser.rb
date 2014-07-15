@@ -21,20 +21,24 @@ module Randomuser
     request("seed=#{seed}")
   end
 
+  class ApiError < Exception
+  end
+
   private
 
     def self.api_url(query='')
       "http://api.randomuser.me/#{Randomuser::VERSION}/?#{query}"
     end
-  
+
     def self.request(query='')
       uri  = URI.parse(self.api_url(query))
       http = Net::HTTP.new(uri.host, uri.port)
 
       http.start do |connection|
-        response = connection.send_request(:get, uri.request_uri)
-        response = JSON.parse(response.body, symbolize_names: true)
-        response[:results]
+        api_response = connection.send_request(:get, uri.request_uri)
+        response = JSON.parse(api_response.body, symbolize_names: true)
+        return response[:results] if response[:results]
+        raise Randomuser::ApiError, api_response.body
       end
     end
 
