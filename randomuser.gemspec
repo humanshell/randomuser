@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.authors       = ['Dominic Giglio']
   gem.email         = ['humanshell@gmail.com']
   gem.homepage      = 'http://developr.me'
-  
+
   #-- gem info
   gem.name          = 'randomuser'
   gem.version       = Randomuser::VERSION
@@ -27,4 +27,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'minitest'
   gem.add_development_dependency 'bundler', '~> 1.3'
   gem.add_development_dependency 'rake'
+  gem.add_development_dependency 'webmock', '~> 1.18.0'
 end

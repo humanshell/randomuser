@@ -3,6 +3,7 @@
 gem     'minitest'
 
 require 'minitest/autorun'
+require 'webmock/minitest'
 require 'randomuser'
 
 # override the generate methods so they return mock responses during testing
@@ -56,4 +57,6 @@ def mock_response(gender='female')
     seed: "beautifulLeopard",
     version: "0.3.1"
   }
+
 end
+

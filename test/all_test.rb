@@ -59,4 +59,10 @@ class TestRandomuser < Minitest::Test
     assert_equal(response.length, 1)
   end
 
+  def test_generate_raises_error_on_server_error
+    stub_request(:get, "http://api.randomuser.me/#{Randomuser::VERSION}/").
+    to_return(:status => 200, :body => '{"error":"Uh oh, something has gone wrong."}', :headers => {})
+    assert_raises(Randomuser::ApiError) { Randomuser.send(:request) }
+  end
+
 end
