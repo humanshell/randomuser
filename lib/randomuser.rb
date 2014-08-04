@@ -32,7 +32,7 @@ module Randomuser
       http = Net::HTTP.new(uri.host, uri.port)
 
       http.start do |connection|
-        response = connection.send_request(:get, uri.request_uri)
+        response = connection.send_request('GET', uri.request_uri)
         response = JSON.parse(response.body, symbolize_names: true)
         response[:results]
       end
